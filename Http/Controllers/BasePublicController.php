@@ -25,12 +25,15 @@ abstract class BasePublicController extends Controller
         $this->auth = app(Authentication::class);
 
         /* Set Locales */
-        if(\App::environment()=='local') {
-            setlocale(LC_TIME, $this->locale.'-'.strtoupper($this->locale));
-        } else {
-            setlocale(LC_TIME, $this->locale.'_'.strtoupper($this->locale));
-        }
+        setlocale(LC_TIME,
+            $this->locale.'-'.strtoupper($this->locale),
+            $this->locale.'_'.strtoupper($this->locale),
+            $this->locale.'_'.strtoupper($this->locale).'.UTF-8'
+        );
         Carbon::setLocale($this->locale);
+
+        /* Set Domain for Assets */
+        \Asset::setDomain('//');
 
         /* Default Breadcrumbs */
         $homepage = app(PageRepository::class)->findHomepage();
@@ -43,7 +46,7 @@ abstract class BasePublicController extends Controller
             });
         }
 
-        /* Default Seo Metas */
+        /* Default Seo Meta */
         $this->seo()->setSiteName(setting('core::site-name-mini') ? setting('core::site-name-mini') : setting('core::site-name'));
 
         $this->seoMeta()->addWebmaster('google', setting('core::google-verification-code'))
