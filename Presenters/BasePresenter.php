@@ -37,10 +37,7 @@ class BasePresenter extends Presenter implements IBasePresenter
         $languages = collect();
         foreach (\LaravelLocalization::getSupportedLocales() as $locale => $supportedLocale)
         {
-            if($locale == \LaravelLocalization::getCurrentLocale()) continue;
-            if($this->entity->hasTranslation($locale)) {
-                $languages->push([$langKey=>$locale, $urlKey=>$this->url($locale)]);
-            }
+            $languages->push([$langKey=>$locale, $urlKey=>$this->url($locale)]);
         }
         return $languages->toArray();
     }
