@@ -7,10 +7,8 @@ trait MySeoable
     use Seoable;
 
     public function getAlternateLanguages($route) {
-        return collect(\LaravelLocalization::getSupportedLocales())->keys()->except(0)->map(function($language) use ($route){
-            if($language!=locale()) {
-                return ['lang'=>$language, 'url'=>url(\LaravelLocalization::getURLFromRouteNameTranslated($language, $route))];
-            }
+        return collect(\LaravelLocalization::getSupportedLocales())->keys()->map(function($language) use ($route){
+            return ['lang'=>$language, 'url'=>url(\LaravelLocalization::getURLFromRouteNameTranslated($language, $route))];
         })->toArray();
     }
 }
