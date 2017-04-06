@@ -128,6 +128,7 @@ class CoreServiceProvider extends ServiceProvider
                 'menu',
                 'notification',
                 'page',
+                'pageextension',
                 'setting',
                 'tag',
                 'translation',
