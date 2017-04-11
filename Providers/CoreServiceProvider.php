@@ -36,6 +36,8 @@ class CoreServiceProvider extends ServiceProvider
             'public.checkLocale'   => 'PublicMiddleware',
             'localizationRedirect' => 'LocalizationMiddleware',
             'can'                  => 'Authorization',
+            'minify'               => 'MinifyHtml',
+            'https'                => 'HttpsProtocol'
         ],
     ];
 

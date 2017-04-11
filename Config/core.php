@@ -55,7 +55,7 @@ return [
             'auth.admin',
         ],
         'frontend' => [
-            'localizationRedirect', 'localeSessionRedirect', 'localize',
+            'minify', 'https'
         ],
         'api'      => [
         ],
