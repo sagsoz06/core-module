@@ -2,7 +2,7 @@
 
 use Laracasts\Presenter\Presenter;
 
-class BasePresenter extends Presenter implements IBasePresenter
+abstract class BasePresenter extends Presenter implements IBasePresenter
 {
     protected $zone = '';
     protected $slug = '';
