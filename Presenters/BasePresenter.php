@@ -82,7 +82,7 @@ abstract class BasePresenter extends Presenter implements IBasePresenter
         if($file = $this->entity->files()->where('zone', $this->zone)->first()) {
             return \Imagy::getImage($file->filename, $this->zone, ['width' => $width, 'height' => $height, 'mode' => $mode, 'quality' => $quality]);
         }
-        return $return ? placeholdit($width ? $width : 200, $height ? $height : 230, 'Resim+Hazırlanıyor') : '';
+        return false;
     }
 
     public function images($width, $height, $mode, $quality)
