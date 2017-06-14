@@ -25,7 +25,7 @@
     "nwidart/laravel-modules": "~1.19",
     "laravelcollective/html": "5.4.*",
     "laracasts/presenter": "~0.2",
-    "dimsav/laravel-translatable": "~6.0",
+    "dimsav/laravel-translatable": "~7.0",
     "mcamara/laravel-localization": "~1.1",
     "floatingpoint/stylist": "~0.1",
     "maatwebsite/laravel-sidebar": "~2.1"

@@ -83,3 +83,24 @@ if (! function_exists('placeholdit'))
         return "https://placeholdit.imgix.net/~text?txtsize=16&txt=$text&w=$width&h=$height";
     }
 }
+
+if (! function_exists('str_sentence')) {
+    function str_sentence($body, $sentencesToDisplay=1) {
+        $nakedBody = preg_replace('/\s+/',' ',strip_tags($body));
+        $sentences = preg_split('/(\.|\?|\!)(\s)/',$nakedBody);
+
+        if (count($sentences) <= $sentencesToDisplay)
+            return $nakedBody;
+
+        $stopAt = 0;
+        foreach ($sentences as $i => $sentence) {
+            $stopAt += strlen($sentence);
+
+            if ($i >= $sentencesToDisplay - 1)
+                break;
+        }
+
+        $stopAt += ($sentencesToDisplay * 2);
+        return trim(substr($nakedBody, 0, $stopAt));
+    }
+}
