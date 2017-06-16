@@ -8,5 +8,5 @@
 $lang = null;
 
 if (App::environment() == 'testing') {
-    $lang = 'fr';
+    $lang = 'en';
 }

@@ -32,12 +32,18 @@ abstract class BasePresenter extends Presenter implements IBasePresenter
         return $this->entity->og_description ? str_limit($this->entity->og_description, $limit) : str_limit($this->entity->{$this->descriptionKey}, $limit);
     }
 
-    public function languages($langKey='lang', $urlKey='url')
+    public function languages($langKey='lang', $urlKey='url', $sitemap=false)
     {
         $languages = collect();
         foreach (\LaravelLocalization::getSupportedLocales() as $locale => $supportedLocale)
         {
-            $languages->push([$langKey=>$locale, $urlKey=>$this->url($locale)]);
+            if($sitemap) {
+                if(array_first(\LaravelLocalization::getSupportedLanguagesKeys())!=$locale) {
+                    $languages->push([$langKey => $locale, $urlKey => $this->url($locale)]);
+                }
+            } else {
+                $languages->push([$langKey => $locale, $urlKey => $this->url($locale)]);
+            }
         }
         return $languages->toArray();
     }
