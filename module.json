@@ -4,7 +4,7 @@
     "description": "The core module with all base classes and logic.",
     "keywords": [],
     "require": {},
-    "version": "2.1.2",
+    "version": "2.1.3",
     "active": 1,
     "order": 0,
     "providers": [
@@ -21,7 +21,8 @@
     "aliases": {
         "Form": "Collective\\Html\\FormFacade",
         "Flash": "Laracasts\\Flash\\Flash",
-        "LaravelLocalization": "Mcamara\\LaravelLocalization\\Facades\\LaravelLocalization"
+        "LaravelLocalization": "Mcamara\\LaravelLocalization\\Facades\\LaravelLocalization",
+        "AsgardEditorDirective": "Modules\\Core\\Blade\\Facades\\AsgardEditorDirective"
     },
     "files": [
         "start.php",

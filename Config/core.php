@@ -34,6 +34,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | WYSIWYG Backend Editor
+    |--------------------------------------------------------------------------
+    | Define which editor you would like to use for the backend wysiwygs.
+    | These classes are event handlers, listening to EditorIsRendering
+    | you can define your own handlers and use them here
+    | Options:
+    | - \Modules\Core\Events\Handlers\LoadCkEditor::class
+    | - \Modules\Core\Events\Handlers\LoadSimpleMde::class
+    */
+    'wysiwyg-handler' => \Modules\Core\Events\Handlers\LoadCkEditor::class,
+
+    /*
+    |--------------------------------------------------------------------------
     | Custom CKeditor configuration file
     |--------------------------------------------------------------------------
     | Define a custom CKeditor configuration file to instead of the one
@@ -86,6 +99,7 @@ return [
         'animate.css'                   => ['theme' => 'vendor/animate.css/animate.min.css'],
         'pace.css'                      => ['theme' => 'vendor/admin-lte/plugins/pace/pace.min.css'],
         'select2.css'                   => ['theme' => 'vendor/select2/select2.min.css'],
+        'simplemde.css'                 => ['theme' => 'vendor/simplemde/dist/simplemde.min.css'],
         // Javascript
         'bootstrap.js'                  => ['theme' => 'vendor/bootstrap/dist/js/bootstrap.min.js'],
         'mousetrap.js'                  => ['theme' => 'js/vendor/mousetrap.min.js'],
@@ -126,7 +140,8 @@ return [
         'bootstrap-datepicker.js'       => ['theme' => 'vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js'],
         'bootstrap-datepicker.css'      => ['theme' => 'vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css'],
         'bootstrap-datetimepicker.js'   => ['theme' => 'vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'],
-        'bootstrap-datetimepicker.css'  => ['theme' => 'vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css']
+        'bootstrap-datetimepicker.css'  => ['theme' => 'vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css'],
+        'simplemde.js'                  => ['theme' => 'vendor/simplemde/dist/simplemde.min.js'],
     ],
 
     /*
@@ -181,5 +196,5 @@ return [
     | Enable module view overrides at theme locations
     |--------------------------------------------------------------------------
     */
-    'enable-theme-overrides' => true,
+    'enable-theme-overrides'    => true,
 ];

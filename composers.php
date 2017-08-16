@@ -8,3 +8,4 @@ view()->composer('core::fields.select-locales', \Modules\Core\Composers\SettingL
 view()->composer('*', \Modules\Core\Composers\LocaleComposer::class);
 view()->composer('*', \Modules\Core\Composers\CurrentUserViewComposer::class);
 view()->composer('layouts.master', \Modules\Core\Composers\AssetsViewComposer::class);
+view()->composer('*', \Modules\Core\Composers\EditorViewComposer::class);

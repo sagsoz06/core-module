@@ -2,21 +2,28 @@
 
 namespace Modules\Core\Providers;
 
+use Illuminate\Http\Request;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
+use Modules\Core\Blade\AsgardEditorDirective;
+use Modules\Core\Console\DownloadModuleCommand;
 use Modules\Core\Console\InstallCommand;
 use Modules\Core\Console\PublishModuleAssetsCommand;
 use Modules\Core\Console\PublishThemeAssetsCommand;
+use Modules\Core\Events\BuildingSidebar;
+use Modules\Core\Events\EditorIsRendering;
+use Modules\Core\Events\Handlers\RegisterCoreSidebar;
 use Modules\Core\Foundation\Theme\ThemeManager;
+use Modules\Core\Traits\CanGetSidebarClassForModule;
 use Modules\Core\Traits\CanPublishConfiguration;
 use Modules\Media\Image\ThumbnailManager;
 use Nwidart\Modules\Module;
 
 class CoreServiceProvider extends ServiceProvider
 {
-    use CanPublishConfiguration;
+    use CanPublishConfiguration, CanGetSidebarClassForModule;
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -53,6 +60,7 @@ class CoreServiceProvider extends ServiceProvider
         $this->registerModuleResourceNamespaces();
 
         $this->bladeDirectives();
+        $this->app['events']->listen(EditorIsRendering::class, config('asgard.core.core.wysiwyg-handler'));
 
         $this->registerThumbnails();
     }
@@ -68,9 +76,22 @@ class CoreServiceProvider extends ServiceProvider
             return true === env('INSTALLED', false);
         });
 
+        $this->app->singleton('asgard.onBackend', function() {
+            return $this->onBackend();
+        });
+
         $this->registerCommands();
         $this->registerServices();
         $this->setLocalesConfigurations();
+
+        $this->app->bind('core.asgard.editor', function () {
+           return new AsgardEditorDirective();
+        });
+
+        $this->app['events']->listen(
+            BuildingSidebar::class,
+            $this->getSidebarClassForModule('core', RegisterCoreSidebar::class)
+        );
     }
 
     /**
@@ -109,6 +130,7 @@ class CoreServiceProvider extends ServiceProvider
             InstallCommand::class,
             PublishThemeAssetsCommand::class,
             PublishModuleAssetsCommand::class,
+            DownloadModuleCommand::class,
         ]);
     }
 
@@ -248,7 +270,7 @@ class CoreServiceProvider extends ServiceProvider
      */
     private function setLocalesConfigurations()
     {
-        if (!$this->app['asgard.isInstalled']) {
+        if ($this->app['asgard.isInstalled'] === false || $this->app->runningInConsole() === true) {
             return;
         }
 
@@ -292,10 +314,6 @@ class CoreServiceProvider extends ServiceProvider
      */
     private function moduleHasCentralisedTranslations(Module $module)
     {
-        if (!array_has($this->app['modules']->enabled(), 'Translation')) {
-            return false;
-        }
-
         return is_dir($this->getCentralisedTranslationPath($module));
     }
 
@@ -306,7 +324,17 @@ class CoreServiceProvider extends ServiceProvider
      */
     private function getCentralisedTranslationPath(Module $module)
     {
-        return $this->app['modules']->find('Translation')->getPath() . "/Resources/lang/{$module->getLowerName()}";
+        $path = config('modules.paths.modules'). '/Translation';
+        return $path . "/Resources/lang/{$module->getLowerName()}";
+    }
+
+    private function onBackend()
+    {
+        $url = app(Request::class)->url();
+        if(str_contains($url, config('asgard.core.core.admin-prefix'))) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -314,6 +342,9 @@ class CoreServiceProvider extends ServiceProvider
      */
     public function bladeDirectives()
     {
+        if(app()->environment() === 'testing') {
+            return;
+        }
         /**
          * Set variable.
          * Usage: @set($variable, value)
@@ -322,6 +353,10 @@ class CoreServiceProvider extends ServiceProvider
             list($variable, $value) = $this->getArguments($expression);
 
             return "<?php {$variable} = {$value}; ?>";
+        });
+
+        $this->app['blade.compiler']->directive('editor', function ($value) {
+           return "<?php echo AsgardEditorDirective::show([$value]); ?>";
         });
     }
 

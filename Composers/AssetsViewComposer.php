@@ -4,6 +4,7 @@ namespace Modules\Core\Composers;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Modules\Core\Events\CollectingAssets;
 use Modules\Core\Foundation\Asset\Manager\AssetManager;
 use Modules\Core\Foundation\Asset\Pipeline\AssetPipeline;
 use Modules\Core\Foundation\Asset\Types\AssetTypeFactory;
@@ -37,7 +38,7 @@ class AssetsViewComposer
 
     public function compose(View $view)
     {
-        if ($this->onBackend() === false) {
+        if (app('asgard.onBackend') === false) {
             return;
         }
 
@@ -48,17 +49,9 @@ class AssetsViewComposer
         $this->assetPipeline->requireCss(config('asgard.core.core.admin-required-assets.css'));
         $this->assetPipeline->requireJs(config('asgard.core.core.admin-required-assets.js'));
 
+        event(new CollectingAssets($this->assetPipeline));
+
         $view->with('cssFiles', $this->assetPipeline->allCss());
         $view->with('jsFiles', $this->assetPipeline->allJs());
-    }
-
-    private function onBackend()
-    {
-        $url = $this->request->url();
-        if (str_contains($url, config('asgard.core.core.admin-prefix'))) {
-            return true;
-        }
-
-        return false;
     }
 }

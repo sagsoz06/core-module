@@ -364,3 +364,11 @@ Form::macro('selectHours', function($name, $start, $end, $selected = null, $attr
 
     return Form::select($name, $range, $selected, $attributes);
 });
+
+Response::macro('csv', function ($file, $filename, $status = 200, $headers = []) {
+    return response($file, $status, array_merge([
+        'Content-Type' => 'application/csv',
+        'Content-Disposition' => "attachment; filename={$filename}",
+        'Pragma' => 'no-cache',
+    ], $headers));
+});

@@ -26,8 +26,6 @@ abstract class BasePublicController extends Controller
 
         /* Set Locales */
         setlocale(LC_TIME,
-            $this->locale.'-'.strtoupper($this->locale),
-            $this->locale.'_'.strtoupper($this->locale),
             $this->locale.'_'.strtoupper($this->locale).'.UTF-8'
         );
         Carbon::setLocale($this->locale);
