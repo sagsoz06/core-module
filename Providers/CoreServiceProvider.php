@@ -163,7 +163,8 @@ class CoreServiceProvider extends ServiceProvider
                 'contact',
                 'carrental',
                 'employee',
-                'faq'
+                'faq',
+                'course'
             ];
         });
     }
