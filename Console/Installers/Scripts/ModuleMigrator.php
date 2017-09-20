@@ -23,9 +23,7 @@ class ModuleMigrator implements SetupScript
         'News',
         'Contact',
         'Theme',
-        'PageExtension',
-        'Store',
-        'Localization'
+        'PageExtension'
     ];
 
     /**
