@@ -85,7 +85,7 @@ class CoreServiceProvider extends ServiceProvider
         $this->setLocalesConfigurations();
 
         $this->app->bind('core.asgard.editor', function () {
-           return new AsgardEditorDirective();
+            return new AsgardEditorDirective();
         });
 
         $this->app['events']->listen(
@@ -356,7 +356,7 @@ class CoreServiceProvider extends ServiceProvider
         });
 
         $this->app['blade.compiler']->directive('editor', function ($value) {
-           return "<?php echo AsgardEditorDirective::show([$value]); ?>";
+            return "<?php echo AsgardEditorDirective::show([$value]); ?>";
         });
     }
 
@@ -374,8 +374,8 @@ class CoreServiceProvider extends ServiceProvider
     {
         $this->app[ThumbnailManager::class]->registerThumbnail('mediumThumb', [
             'fit' => [
-                'width'    => '150',
-                'height'   => '150',
+                'width'    => '100',
+                'height'   => '100',
                 'callback' => function ($constraint) {
                     $constraint->upsize();
                 },
