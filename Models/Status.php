@@ -1,4 +1,4 @@
-<?php namespace Core\Models;
+<?php namespace Modules\Core\Models;
 
 class Status
 {
