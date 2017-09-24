@@ -142,6 +142,8 @@ return [
         'bootstrap-datetimepicker.js'   => ['theme' => 'vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'],
         'bootstrap-datetimepicker.css'  => ['theme' => 'vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css'],
         'simplemde.js'                  => ['theme' => 'vendor/simplemde/dist/simplemde.min.js'],
+        'bootstrap-colorpicker.js'      => ['theme' => 'vendor/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js'],
+        'bootstrap-colorpicker.css'     => ['theme' => 'vendor/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css'],
     ],
 
     /*
