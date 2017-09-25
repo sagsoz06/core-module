@@ -96,7 +96,7 @@ abstract class BasePresenter extends Presenter implements IBasePresenter
     public function images($width, $height, $mode, $quality)
     {
         $productImages = [];
-        foreach ($this->entity->files()->where('zone', $this->zone)->get() as $file)
+        foreach ($this->entity->files as $file)
         {
             $productImages[] = \Imagy::getImage($file->filename, $this->zone, ['width' => $width, 'height' => $height, 'mode' => $mode, 'quality' => $quality]);
         }
