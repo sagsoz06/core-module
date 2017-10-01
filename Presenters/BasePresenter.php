@@ -87,7 +87,7 @@ abstract class BasePresenter extends Presenter implements IBasePresenter
 
     public function firstImage($width, $height, $mode, $quality, $return=true)
     {
-        if($file = collect($this->entity->files)->first()) {
+        if($file = $this->entity->files()->where('zone', $this->zone)->first()) {
             return \Imagy::getImage($file->filename, $this->zone, ['width' => $width, 'height' => $height, 'mode' => $mode, 'quality' => $quality]);
         }
         return false;
