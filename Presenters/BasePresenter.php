@@ -85,9 +85,9 @@ abstract class BasePresenter extends Presenter implements IBasePresenter
         return route($this->routeKey, $this->entity->{$this->slugKey});
     }
 
-    public function firstImage($width, $height, $mode, $quality, $return=true)
+    public function firstImage($width, $height, $mode, $quality)
     {
-        if($file = $this->entity->files()->where('zone', $this->zone)->first()) {
+        if($file = $this->entity->filesByZone($this->zone)->first()) {
             return \Imagy::getImage($file->filename, $this->zone, ['width' => $width, 'height' => $height, 'mode' => $mode, 'quality' => $quality]);
         }
         return false;
@@ -96,7 +96,7 @@ abstract class BasePresenter extends Presenter implements IBasePresenter
     public function images($width, $height, $mode, $quality)
     {
         $productImages = [];
-        foreach ($this->entity->files as $file)
+        foreach ($this->entity->filesByZone($this->zone)->get() as $file)
         {
             $productImages[] = \Imagy::getImage($file->filename, $this->zone, ['width' => $width, 'height' => $height, 'mode' => $mode, 'quality' => $quality]);
         }
