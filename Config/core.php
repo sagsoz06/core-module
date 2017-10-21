@@ -6,7 +6,7 @@ return [
     | The prefix that'll be used for the administration
     |--------------------------------------------------------------------------
     */
-    'admin-prefix'              => 'admin',
+    'admin-prefix'              => 'backend',
 
     /*
     |--------------------------------------------------------------------------
