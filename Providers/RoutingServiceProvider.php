@@ -108,7 +108,7 @@ abstract class RoutingServiceProvider extends ServiceProvider
         if ($api && file_exists($api)) {
             $router->group([
                 'namespace' => 'Api',
-                'prefix' => 'api',
+                'prefix' => LaravelLocalization::setLocale() . '/api',
                 'middleware' => config('asgard.core.core.middleware.api', []),
             ], function (Router $router) use ($api) {
                 require $api;
