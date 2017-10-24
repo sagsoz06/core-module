@@ -2,6 +2,7 @@
 
 namespace Modules\Core\Providers;
 
+use Illuminate\Foundation\AliasLoader;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Blade;
@@ -79,6 +80,21 @@ class CoreServiceProvider extends ServiceProvider
         $this->app->singleton('asgard.onBackend', function() {
             return $this->onBackend();
         });
+
+        if($this->app['asgard.onBackend']===true) {
+            $this->app->register(\Bootstrapper\BootstrapperL5ServiceProvider::class);
+            $this->app->register(\Yajra\Datatables\DatatablesServiceProvider::class);
+            $this->app->register(\Maatwebsite\Excel\ExcelServiceProvider::class);
+            $this->app->register(\Yajra\Datatables\ButtonsServiceProvider::class);
+            $aliasLoader = AliasLoader::getInstance();
+            $aliasLoader->alias('BSLabel', \Bootstrapper\Facades\Label::class);
+            $aliasLoader->alias('BSHelp', \Bootstrapper\Facades\Helpers::class);
+            $aliasLoader->alias('BSControlGroup',\Bootstrapper\Facades\ControlGroup::class);
+            $aliasLoader->alias('BSInputGroup',\Bootstrapper\Facades\InputGroup::class);
+            $aliasLoader->alias('BSTable',\Bootstrapper\Facades\Table::class);
+            $aliasLoader->alias('BSForm', \Bootstrapper\Facades\Form::class);
+            $aliasLoader->alias('Excel', \Maatwebsite\Excel\Facades\Excel::class);
+        }
 
         $this->registerCommands();
         $this->registerServices();
