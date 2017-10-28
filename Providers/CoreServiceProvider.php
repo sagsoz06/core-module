@@ -180,7 +180,8 @@ class CoreServiceProvider extends ServiceProvider
                 'carrental',
                 'employee',
                 'faq',
-                'course'
+                'course',
+                'popup'
             ];
         });
     }
