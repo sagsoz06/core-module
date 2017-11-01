@@ -94,6 +94,7 @@ class CoreServiceProvider extends ServiceProvider
             $aliasLoader->alias('BSTable',\Bootstrapper\Facades\Table::class);
             $aliasLoader->alias('BSForm', \Bootstrapper\Facades\Form::class);
             $aliasLoader->alias('Excel', \Maatwebsite\Excel\Facades\Excel::class);
+            $aliasLoader->alias('Datatables', \Yajra\Datatables\Facades\Datatables::class);
         }
 
         $this->registerCommands();
@@ -181,7 +182,8 @@ class CoreServiceProvider extends ServiceProvider
                 'employee',
                 'faq',
                 'course',
-                'popup'
+                'popup',
+                'guestbook'
             ];
         });
     }
