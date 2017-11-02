@@ -145,29 +145,16 @@ class CoreServiceProvider extends ServiceProvider
 
         $this->app->singleton('asgard.ModulesList', function () {
             return [
-                'block',
-                'blog',
                 'core',
                 'dashboard',
                 'media',
                 'menu',
-                'notification',
                 'page',
-                'pageextension',
                 'setting',
                 'tag',
                 'translation',
                 'user',
-                'workshop',
-                'news',
-                'store',
-                'contact',
-                'carrental',
-                'employee',
-                'faq',
-                'course',
-                'popup',
-                'guestbook'
+                'workshop'
             ];
         });
     }
