@@ -18,12 +18,7 @@ class ModuleMigrator implements SetupScript
         'Dashboard',
         'Translation',
         'Tag',
-        'Blog',
-        'Block',
-        'News',
-        'Contact',
-        'Theme',
-        'PageExtension'
+        'Contact'
     ];
 
     /**
