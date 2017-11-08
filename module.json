@@ -30,7 +30,14 @@
         "AsgardEditorDirective": "Modules\\Core\\Blade\\Facades\\AsgardEditorDirective",
 
         "Datatables": "Yajra\\Datatables\\Facades\\Datatables",
-        "Excel": "Maatwebsite\\Excel\\Facades\\Excel"
+        "Excel": "Maatwebsite\\Excel\\Facades\\Excel",
+
+        "BSLabel": "Bootstrapper\\Facades\\Label",
+        "BSForm": "Bootstrapper\\Facades\\Form",
+        "BSHelp": "Bootstrapper\\Facades\\Helpers",
+        "BSControlGroup": "Bootstrapper\\Facades\\ControlGroup",
+        "BSInputGroup": "Bootstrapper\\Facades\\InputGroup",
+        "BSTable": "Bootstrapper\\Facades\\Table"
     },
     "files": [
         "start.php",
