@@ -53,6 +53,17 @@ abstract class EloquentBaseRepository implements BaseRepository
     /**
      * @inheritdoc
      */
+    public function allWithBuilder()
+    {
+        if (method_exists($this->model, 'translations')) {
+            return $this->model->with('translations');
+        }
+        return $this->model;
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function paginate($perPage = 15)
     {
         if (method_exists($this->model, 'translations')) {
