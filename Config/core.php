@@ -65,7 +65,7 @@ return [
     */
     'middleware'                => [
         'backend'  => [
-            'minify', 'auth.admin'
+            'auth.admin'
         ],
         'frontend' => [
             'minify', 'https'
