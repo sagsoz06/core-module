@@ -57,7 +57,7 @@ abstract class BasePresenter extends Presenter implements IBasePresenter
         })->toArray();
     }
 
-    public function og_image($width = 600, $height = 600, $mode = 'fit', $quality = 80)
+    public function og_image($width = 600, $height = null, $mode = 'resize', $quality = 80)
     {
         if($file = $this->entity->files()->first()) {
             return url($this->firstImage($width, $height, $mode, $quality));
