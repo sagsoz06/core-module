@@ -22,6 +22,8 @@ interface BaseRepository
 
     public function allWithBuilder();
 
+    public function query();
+
     /**
      * Paginate the model to $perPage items per page
      * @param  int $perPage

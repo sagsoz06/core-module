@@ -61,6 +61,11 @@ abstract class EloquentBaseRepository implements BaseRepository
         return $this->model;
     }
 
+    public function query()
+    {
+        return $this->model->newQuery();
+    }
+
     /**
      * @inheritdoc
      */

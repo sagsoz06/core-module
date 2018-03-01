@@ -76,6 +76,17 @@ abstract class BaseCacheDecorator implements BaseRepository
             );
     }
 
+    public function query()
+    {
+        return $this->cache
+            ->tags([$this->entityName, 'global'])
+            ->remember("{$this->locale}.{$this->entityName}.query", $this->cacheTime,
+                function () {
+                    return $this->repository->query();
+                }
+            );
+    }
+
     /**
      * @inheritdoc
      */
