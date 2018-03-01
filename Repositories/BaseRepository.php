@@ -20,9 +20,11 @@ interface BaseRepository
      */
     public function all();
 
+    /**
+     * Return a collection of all elements of the resource
+     * @return \Illuminate\Database\Eloquent\Model
+     */
     public function allWithBuilder();
-
-    public function query();
 
     /**
      * Paginate the model to $perPage items per page

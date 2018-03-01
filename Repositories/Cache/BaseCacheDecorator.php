@@ -65,6 +65,9 @@ abstract class BaseCacheDecorator implements BaseRepository
             );
     }
 
+    /**
+     * @return mixed
+     */
     public function allWithBuilder()
     {
         return $this->cache
@@ -72,17 +75,6 @@ abstract class BaseCacheDecorator implements BaseRepository
             ->remember("{$this->locale}.{$this->entityName}.allWithBuilder", $this->cacheTime,
                 function () {
                     return $this->repository->allWithBuilder();
-                }
-            );
-    }
-
-    public function query()
-    {
-        return $this->cache
-            ->tags([$this->entityName, 'global'])
-            ->remember("{$this->locale}.{$this->entityName}.query", $this->cacheTime,
-                function () {
-                    return $this->repository->query();
                 }
             );
     }
