@@ -57,7 +57,8 @@ abstract class BasePublicController extends Controller
                         ->addMeta('geo-position', setting('core::geo-position'))
                         ->addMeta('ICBM', setting('core::geo-position'))
                         ->addMeta('author', 'http://www.qbicom.com.tr')
-                        ->addMeta('copyrights', 'Qbicom Digital');
+                        ->addMeta('copyrights', 'Qbicom Digital')
+                        ->addMeta('robots', 'index,follow');
 
         $this->seoGraph()->setTitle(setting('core::site-name'))
              ->setDescription(setting('core::site-description'));
