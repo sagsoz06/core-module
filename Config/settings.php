@@ -16,6 +16,11 @@ return [
         'view'         => 'textarea',
         'translatable' => true,
     ],
+    'cookie-law'                  => [
+        'description'  => 'core::settings.cookie-law',
+        'view'         => 'textarea',
+        'translatable' => true,
+    ],
     'template'                    => [
         'description' => 'core::settings.template',
         'view'        => 'core::fields.select-theme',
@@ -65,9 +70,4 @@ return [
         'view'         => 'text',
         'translatable' => false,
     ],
-    'google-tag-manager'          => [
-        'description'  => 'core::settings.google-tag-manager',
-        'view'         => 'textarea',
-        'translatable' => false,
-    ]
 ];

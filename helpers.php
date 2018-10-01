@@ -119,6 +119,7 @@ if (! function_exists('str_sentence')) {
     }
 }
 
+
 if (! function_exists('localize_url')) {
     function localize_url($locale="tr") {
         $currentRoute = Request::route()->getName();
