@@ -19,9 +19,9 @@
                 "message": "{{ setting('core::cookie-law') ? strip_tags(setting('core::cookie-law')) : 'İstatistiksel amaçlarla ve odaklanmış pazarlamalar için bizler ve iş ortaklarımız çerez kullanırız. Bu web sitesine tıklarsanız veya devam ederseniz, çerezlerin kullanımı kabul etmiş sayılırsınız. Çerez kullanımımız hakkında daha fazla bilgi edinebilirsiniz' }}",
                 "dismiss": '{{ trans('global.buttons.close') }}',
                 "allow": " Tamam",
-                "link": "Daha fazla bilgi için tıklayınız.",
+                "link": "{{ trans('themes::theme.buttons.click for more information') }}",
                 "deny": "Hayır",
-                "href": "{{ url('cookie') }}",
+                "href": "{{ LaravelLocalization::getLocalizedUrl(locale(), url('cookie')) }}",
                 "target": "_top"
             }
         })});
