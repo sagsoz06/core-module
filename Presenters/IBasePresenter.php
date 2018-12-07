@@ -11,6 +11,6 @@ interface IBasePresenter
     public function languages();
     public function meta_keywords($limit);
     public function og_image($width=600, $height=600, $mode='fit', $quality=80);
-    public function firstImage($width, $height, $mode, $quality);
+    public function firstImage($width, $height, $mode, $quality, $watermark="");
     public function images($width, $height, $mode, $quality);
 }
