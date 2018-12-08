@@ -12,7 +12,7 @@ class HttpsProtocol {
      */
     public function handle($request, Closure $next)
     {
-        if (!$request->secure() && env('APP_ENV') === 'production' && env('APP_SECURE')) {
+        if (!$request->secure() && config('app.env') === 'production' && config('app.secure')) {
             return redirect()->secure($request->getRequestUri());
         }
 
