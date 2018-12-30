@@ -66,7 +66,7 @@ abstract class BasePresenter extends Presenter implements IBasePresenter
         if($languages->count()>1) {
             return $languages->toArray();
         }
-        return null;
+        return [];
     }
 
     /**
