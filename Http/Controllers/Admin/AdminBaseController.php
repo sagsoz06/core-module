@@ -37,11 +37,9 @@ class AdminBaseController extends Controller
         $this->locale = \LaravelLocalization::getCurrentLocale();
 
         /* Set Locales */
-        if(\App::environment()=='local') {
-            setlocale(LC_TIME, $this->locale.'-'.strtoupper($this->locale));
-        } else {
-            setlocale(LC_TIME, $this->locale.'_'.strtoupper($this->locale));
-        }
+        setlocale(LC_TIME,
+            $this->locale.'_'.strtoupper($this->locale).'.UTF-8'
+        );
         Carbon::setLocale($this->locale);
     }
 
