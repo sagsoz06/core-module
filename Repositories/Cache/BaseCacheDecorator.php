@@ -85,9 +85,10 @@ abstract class BaseCacheDecorator implements BaseRepository
      */
     public function paginate($perPage = 15)
     {
+        $page = \Request::has('page') ? \Request::query('page') : 1;
         return $this->cache
             ->tags([$this->entityName, 'global'])
-            ->remember("{$this->locale}.{$this->entityName}.paginate.{$perPage}", $this->cacheTime,
+            ->remember("{$this->locale}.{$this->entityName}.paginate.{$perPage}.{$page}", $this->cacheTime,
                 function () use ($perPage) {
                     return $this->repository->paginate($perPage);
                 }
