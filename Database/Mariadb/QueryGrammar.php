@@ -16,7 +16,7 @@ class QueryGrammar extends MySqlGrammar
         } else {
             $delimiter = '->';
             $format = 'JSON_EXTRACT(%s, \'$.%s\')';
-        }
+        } 
 
         $path = explode($delimiter, $value);
 
