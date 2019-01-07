@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Core\Database\MariaDB;
+namespace Modules\Core\Database\Mariadb;
 
 use Illuminate\Support\Fluent;
 use Illuminate\Database\Schema\Blueprint;

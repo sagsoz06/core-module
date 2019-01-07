@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Core\Database\MariaDB;
+namespace Modules\Core\Database\Mariadb;
 
 class Connection extends \Illuminate\Database\MySqlConnection
 {

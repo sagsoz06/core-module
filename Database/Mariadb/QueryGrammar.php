@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Core\Database\MariaDB;
+namespace Modules\Core\Database\Mariadb;
 
 use Illuminate\Support\Str;
 use Illuminate\Database\Query\Grammars\MySqlGrammar;
@@ -16,7 +16,7 @@ class QueryGrammar extends MySqlGrammar
         } else {
             $delimiter = '->';
             $format = 'JSON_EXTRACT(%s, \'$.%s\')';
-        } 
+        }
 
         $path = explode($delimiter, $value);
 

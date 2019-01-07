@@ -4,7 +4,7 @@ namespace Modules\Core\Providers;
 
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
-use Modules\Core\Database\MariaDB\MariaDBServiceProvider;
+use Modules\Core\Database\Mariadb\MariaDBServiceProvider;
 use Modules\Translation\Providers\TranslationServiceProvider;
 use Nwidart\Modules\Facades\Module;
 use Nwidart\Modules\LaravelModulesServiceProvider;
