@@ -102,21 +102,11 @@ abstract class BasePresenter extends Presenter implements IBasePresenter
     public function url($locale='')
     {
         if(!empty($locale)) {
-            if($this->transKey == 'page') {
-                if($this->entity->hasTranslation($locale)) {
-                    return \LaravelLocalization::getLocalizedURL($locale, $this->entity->translate($locale)->{$this->slugKey});
-                }
-            } else {
-                if($this->entity->hasTranslation($locale)) {
-                    if(isset($this->entity->translate($locale)->{$this->slugKey})) {
-                        return \LaravelLocalization::getURLFromRouteNameTranslated($locale, $this->transKey, [$this->slug => $this->entity->translate($locale)->{$this->slugKey}]);
-                    } else {
-                        return \LaravelLocalization::getURLFromRouteNameTranslated($locale, $this->transKey, [$this->slug => $this->entity->{$this->slugKey}]);
-                    }
-                }
+            if($this->entity->hasTranslation($locale)) {
+                return $this->entity->translate($locale)->url;
             }
         }
-        return route($this->routeKey, $this->entity->{$this->slugKey});
+        return localize_url($this->routeKey, $this->entity->url);
     }
 
     /**
