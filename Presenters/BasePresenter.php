@@ -47,7 +47,7 @@ abstract class BasePresenter extends Presenter implements IBasePresenter
     {
         return $this->entity->og_description ? str_limit($this->entity->og_description, $limit) : str_limit($this->entity->{$this->descriptionKey}, $limit);
     }
-    
+
     /**
      * @param string $locale
      * @return false|string
