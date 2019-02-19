@@ -47,6 +47,20 @@ abstract class BasePresenter extends Presenter implements IBasePresenter
     {
         return $this->entity->og_description ? str_limit($this->entity->og_description, $limit) : str_limit($this->entity->{$this->descriptionKey}, $limit);
     }
+    
+    /**
+     * @param string $locale
+     * @return false|string
+     */
+    public function url($locale='')
+    {
+        if(!empty($locale)) {
+            if($this->entity->hasTranslation($locale)) {
+                return $this->entity->translate($locale)->url;
+            }
+        }
+        return localize_url($this->routeKey, $this->entity->url);
+    }
 
     /**
      * @param string $langKey
@@ -93,20 +107,6 @@ abstract class BasePresenter extends Presenter implements IBasePresenter
             return url($this->firstImage($width, $height, $mode, $quality));
         }
         return null;
-    }
-
-    /**
-     * @param string $locale
-     * @return false|string
-     */
-    public function url($locale='')
-    {
-        if(!empty($locale)) {
-            if($this->entity->hasTranslation($locale)) {
-                return $this->entity->translate($locale)->url;
-            }
-        }
-        return localize_url($this->routeKey, $this->entity->url);
     }
 
     /**
