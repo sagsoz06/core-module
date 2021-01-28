@@ -27,7 +27,8 @@ abstract class BasePresenter extends Presenter implements IBasePresenter
      */
     public function meta_description($limit=165)
     {
-        return $this->entity->meta_description ? $this->entity->meta_description : $this->entity->{$this->descriptionKey};
+        $description = preg_replace('/(\[form\sid\=\d])/m', 'form', $this->entity->{$this->descriptionKey});
+        return $this->entity->meta_description ? $this->entity->meta_description : $description;
     }
 
     /**
@@ -45,7 +46,8 @@ abstract class BasePresenter extends Presenter implements IBasePresenter
      */
     public function og_description($limit=165)
     {
-        return $this->entity->og_description ? str_limit($this->entity->og_description, $limit) : str_limit($this->entity->{$this->descriptionKey}, $limit);
+        $description = preg_replace('/(\[form\sid\=\d])/m', 'form', $this->entity->{$this->descriptionKey});
+        return $this->entity->og_description ? str_limit($this->entity->og_description, $limit) : str_limit($description, $limit);
     }
 
     /**
